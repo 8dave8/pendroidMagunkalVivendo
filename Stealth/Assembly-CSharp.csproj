@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>     <Compile Include="Assets\Scripts\CharacterMover.cs" />
+     <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\HealthConroller.cs" />
      <Compile Include="Assets\Scripts\PickupController.cs" />
  <Reference Include="Unity.Timeline.Editor">

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - People
   - key
+  - Point
   layers:
   - Default
   - TransparentFX
