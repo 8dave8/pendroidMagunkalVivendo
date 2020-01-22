@@ -10,6 +10,7 @@ TagManager:
   - People
   - key
   - Point
+  - ClosePlayer
   layers:
   - Default
   - TransparentFX
@@ -19,10 +20,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Points
+  - Player
+  - CLosePlayer
+  - Enemy
   - 
   - 
   - 

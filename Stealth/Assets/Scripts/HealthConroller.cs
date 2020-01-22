@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class HealthConroller : MonoBehaviour
 {
+    public CapsuleCollider2D closeCol;
     public Rigidbody2D rb;
     public Sprite FullHearth;
     public Sprite EmptyHearth;
@@ -38,10 +39,13 @@ public class HealthConroller : MonoBehaviour
         else if(health == 2) hearth2.GetComponent<SpriteRenderer>().sprite = FullHearth;
         Debug.Log("addhealth"+health);
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {   
-        if (col.gameObject.tag == "Enemy")
+        Debug.Log(col.gameObject.GetComponent<CapsuleCollider2D>()+"----"+closeCol);
+
+        if (col.gameObject.tag == "Enemy" && col.gameObject.GetComponent<CapsuleCollider2D>().isTrigger == closeCol.isTrigger)
         {
+            Debug.Log("HEALTH");
             if(takingDamage) return;
             StartCoroutine("wait");            
         }
