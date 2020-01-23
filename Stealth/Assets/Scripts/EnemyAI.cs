@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
     public class EnemyAI : MonoBehaviour {
 
+        public Animator EnemyAnim;
         public bool isTargetingPlayer = false;
         private bool isInBarrel;
         private Vector3 playerPosition;
@@ -14,11 +15,12 @@ using System.Collections;
         }                         
     void GotoNextPoint() {
         if (points.Length == 0) return;
-        float step = 0.1f;
+        float step = 0.15f;
         Vector3 currenttarget;
         if(isTargetingPlayer) currenttarget = playerPosition;
         else currenttarget = points[destPoint].position;
         transform.position = Vector3.MoveTowards(transform.position,currenttarget,step);
+        EnemyAnim.SetBool("walk", true);
         //Debug.Log(transform.position+" "+currenttarget+" "+step);
         //Debug.Log("TargetPLayer: "+isTargetingPlayer+" IsinBarrel"+isInBarrel);
     }
@@ -38,5 +40,9 @@ using System.Collections;
             playerPosition = col.gameObject.transform.position;
         }
         else isTargetingPlayer = false;
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Player")) isTargetingPlayer = false;
     }
 }
