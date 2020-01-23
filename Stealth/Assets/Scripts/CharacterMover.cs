@@ -23,7 +23,7 @@ public class CharacterMover : MonoBehaviour
         Debug.Log(inBarrel);
         float userInputV; 
         float userInputH;
-        if (false)
+        if (false) // SET THIS TRUE TO SWITCH TO PC CONTROLL
         {
             userInputV = Input.GetAxis ("Vertical");
             userInputH = Input.GetAxis ("Horizontal");
@@ -59,6 +59,10 @@ public class CharacterMover : MonoBehaviour
         {
             Destroy(col.gameObject);
             hasKey = true;
+        }
+        if(hasKey && col.gameObject.tag == "Door" && (Input.GetButtonDown("Jump") || buttonPressed))
+        {
+            Loadscene("Map2");
         }
     }
     private void getInBarrel(GameObject col)

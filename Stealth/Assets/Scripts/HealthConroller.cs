@@ -54,7 +54,7 @@ public class HealthConroller : MonoBehaviour
     {
         takingDamage = true;
         takeDamage();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         takingDamage = false;
     }
     private void Death()

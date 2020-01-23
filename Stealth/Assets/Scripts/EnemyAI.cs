@@ -20,7 +20,8 @@ using System.Collections;
         if(isTargetingPlayer) currenttarget = playerPosition;
         else currenttarget = points[destPoint].position;
         transform.position = Vector3.MoveTowards(transform.position,currenttarget,step);
-        EnemyAnim.SetBool("walk", true);
+
+        EnemyAnim.SetBool("Walk", true);
         //Debug.Log(transform.position+" "+currenttarget+" "+step);
         //Debug.Log("TargetPLayer: "+isTargetingPlayer+" IsinBarrel"+isInBarrel);
     }
@@ -44,5 +45,6 @@ using System.Collections;
     void OnTriggerExit2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Player")) isTargetingPlayer = false;
+        
     }
 }
