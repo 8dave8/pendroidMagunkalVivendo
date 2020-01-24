@@ -39,10 +39,9 @@ public class HealthConroller : MonoBehaviour
         else if(health == 2) hearth2.GetComponent<SpriteRenderer>().sprite = FullHearth;
         Debug.Log("addhealth"+health);
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {   
-        Debug.Log(col.gameObject.GetComponent<CapsuleCollider2D>()+"----"+closeCol);
-
+        //Debug.Log(col.gameObject.GetComponent<CapsuleCollider2D>()+"----"+closeCol);
         if (col.gameObject.tag == "Enemy" && col.gameObject.GetComponent<CapsuleCollider2D>().isTrigger == closeCol.isTrigger)
         {
             Debug.Log("HEALTH");
@@ -54,7 +53,7 @@ public class HealthConroller : MonoBehaviour
     {
         takingDamage = true;
         takeDamage();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         takingDamage = false;
     }
     private void Death()

@@ -15,7 +15,7 @@ using System.Collections;
         }                         
     void GotoNextPoint() {
         if (points.Length == 0) return;
-        float step = 0.15f;
+        float step = 0.2f;
         Vector3 currenttarget;
         if(isTargetingPlayer) currenttarget = playerPosition;
         else currenttarget = points[destPoint].position;
@@ -29,7 +29,6 @@ using System.Collections;
         GotoNextPoint();
         if(transform.position == points[destPoint].position)
         {
-            Debug.Log("POINTT");
             destPoint = (destPoint+1) % points.Length;
         }
     }
@@ -45,6 +44,5 @@ using System.Collections;
     void OnTriggerExit2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Player")) isTargetingPlayer = false;
-        
     }
 }

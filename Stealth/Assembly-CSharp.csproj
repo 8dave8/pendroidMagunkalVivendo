@@ -52,9 +52,11 @@
      <Compile Include="Assets\Scripts\CharacterMover.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\HealthConroller.cs" />
-     <Compile Include="Assets\Scripts\PickupController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
@@ -80,17 +82,14 @@
  <Reference Include="Unity.2D.Tilemap.Editor">
  <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>C:/Unity Projects/Stealth/pendroidMagunkalVivendo/Stealth/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

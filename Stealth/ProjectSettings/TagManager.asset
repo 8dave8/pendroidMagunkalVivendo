@@ -11,6 +11,7 @@ TagManager:
   - key
   - Point
   - ClosePlayer
+  - Potion
   layers:
   - Default
   - TransparentFX

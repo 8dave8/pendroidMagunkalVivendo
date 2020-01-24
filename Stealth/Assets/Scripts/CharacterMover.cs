@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class CharacterMover : MonoBehaviour
 {
     public Animator CharacterAnim;
+    public GameObject Visibility;
     public bool buttonPressed = false;
     public Joystick joystick;
     public Text Saved;
@@ -20,7 +21,6 @@ public class CharacterMover : MonoBehaviour
     void Start () {
     }
     void FixedUpdate () {
-        Debug.Log(inBarrel);
         float userInputV; 
         float userInputH;
         if (false) // SET THIS TRUE TO SWITCH TO PC CONTROLL
@@ -32,15 +32,15 @@ public class CharacterMover : MonoBehaviour
             userInputH = joystick.Horizontal;
             userInputV = joystick.Vertical;
         }
+        if(inBarrel && (Math.Abs(userInputH) > 0.2f || Math.Abs(userInputV) > 0.2f)) getOutBarrel();
         if(!inBarrel)
         {
             rb2d.velocity = new Vector2(userInputH,userInputV)*movespeed;
             CharacterAnim.SetFloat("Velocity",Math.Abs(rb2d.velocity.x)+ Math.Abs(rb2d.velocity.y));
         }
         if(inBarrel && (Input.GetButtonDown("Jump") || buttonPressed)){
-            inBarrel = false;
-            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-            gameObject.GetComponentInChildren<CircleCollider2D>().enabled = true;
+            getOutBarrel();
+
         }
     }
     void OnTriggerStay2D(Collider2D col)
@@ -64,6 +64,11 @@ public class CharacterMover : MonoBehaviour
         {
             Loadscene("Map2");
         }
+        if(col.gameObject.tag == "Potion" && (Input.GetButtonDown("Jump") || buttonPressed))
+        {
+            Destroy(col.gameObject);
+            GetComponent<HealthConroller>().addHealth();
+        }
     }
     private void getInBarrel(GameObject col)
     {
@@ -73,6 +78,7 @@ public class CharacterMover : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         gameObject.GetComponentInChildren<CircleCollider2D>().enabled = false;
         GameObject[] currentEnemis = GameObject.FindGameObjectsWithTag("Enemy");
+        Visibility.transform.localScale = new Vector3(4,4,0);
         for (int i = 0; i < currentEnemis.Length; i++)
         {
             StartCoroutine("wait", currentEnemis[i]);
@@ -98,5 +104,13 @@ public class CharacterMover : MonoBehaviour
     public void Loadscene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+    public void getOutBarrel()
+    {
+        Debug.Log("Getoutbarrel");
+        inBarrel = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        gameObject.GetComponentInChildren<CircleCollider2D>().enabled = true;
+        Visibility.transform.localScale = new Vector3(10,10,0);
     }
 }
