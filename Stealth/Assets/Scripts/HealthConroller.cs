@@ -24,6 +24,7 @@ public class HealthConroller : MonoBehaviour
     }
     public void takeDamage()
     {
+        PlayerPrefs.SetInt("dmgTaken",PlayerPrefs.GetInt("dmgTaken")+1);
         health--;
         if (health == 2)      hearth3.GetComponent<SpriteRenderer>().sprite = EmptyHearth;
         else if (health == 1) hearth2.GetComponent<SpriteRenderer>().sprite = EmptyHearth;
@@ -37,14 +38,12 @@ public class HealthConroller : MonoBehaviour
 
         if(health == 3) hearth3.GetComponent<SpriteRenderer>().sprite = FullHearth;
         else if(health == 2) hearth2.GetComponent<SpriteRenderer>().sprite = FullHearth;
-        Debug.Log("addhealth"+health);
     }
     void OnCollisionStay2D(Collision2D col)
     {   
         //Debug.Log(col.gameObject.GetComponent<CapsuleCollider2D>()+"----"+closeCol);
         if (col.gameObject.tag == "Enemy" && col.gameObject.GetComponent<CapsuleCollider2D>().isTrigger == closeCol.isTrigger)
         {
-            Debug.Log("HEALTH");
             if(takingDamage) return;
             StartCoroutine("wait");            
         }
@@ -58,6 +57,7 @@ public class HealthConroller : MonoBehaviour
     }
     private void Death()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetInt("died",PlayerPrefs.GetInt("died")+1);
     }
 }

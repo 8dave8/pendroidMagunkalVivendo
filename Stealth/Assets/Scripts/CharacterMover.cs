@@ -11,15 +11,13 @@ public class CharacterMover : MonoBehaviour
     public GameObject Visibility;
     public bool buttonPressed = false;
     public Joystick joystick;
-    public Text Saved;
     public Rigidbody2D rb2d;
-    private bool hasKey = false;
     public bool inBarrel = false;
     public float movespeed;
+    private bool hasKey = false;
     private float speed = 1f;
     private int saved = 0;
-    void Start () {
-    }
+    
     void FixedUpdate () {
         float userInputV; 
         float userInputH;
@@ -40,7 +38,6 @@ public class CharacterMover : MonoBehaviour
         }
         if(inBarrel && (Input.GetButtonDown("Jump") || buttonPressed)){
             getOutBarrel();
-
         }
     }
     void OnTriggerStay2D(Collider2D col)
@@ -48,15 +45,16 @@ public class CharacterMover : MonoBehaviour
         if (col.gameObject.tag == "Barrel" && (Input.GetButtonDown("Jump") || buttonPressed) && !inBarrel)
         {
             getInBarrel(col.gameObject);
+            PlayerPrefs.SetInt("gotIntoBarrel", PlayerPrefs.GetInt("gotIntoBarrel")+1);
         }
         if(col.gameObject.tag == "People" && (Input.GetButtonDown("Jump") || buttonPressed))
         {
             Destroy(col.gameObject);
-            saved++;
-            Saved.text = "Saved: "+saved;
+            PlayerPrefs.SetInt("peopleSaved", PlayerPrefs.GetInt("peopleSaved")+1);
         }
         if(col.gameObject.tag == "key" && (Input.GetButtonDown("Jump") || buttonPressed))
-        {
+        {                        
+            PlayerPrefs.SetInt("keyPickedup", PlayerPrefs.GetInt("keyPickedup")+1);
             Destroy(col.gameObject);
             hasKey = true;
         }
@@ -66,6 +64,7 @@ public class CharacterMover : MonoBehaviour
         }
         if(col.gameObject.tag == "Potion" && (Input.GetButtonDown("Jump") || buttonPressed))
         {
+            PlayerPrefs.SetInt("HearthPickedup", PlayerPrefs.GetInt("HearthPickedup")+1);
             Destroy(col.gameObject);
             GetComponent<HealthConroller>().addHealth();
         }
@@ -78,7 +77,8 @@ public class CharacterMover : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         gameObject.GetComponentInChildren<CircleCollider2D>().enabled = false;
         GameObject[] currentEnemis = GameObject.FindGameObjectsWithTag("Enemy");
-        Visibility.transform.localScale = new Vector3(4,4,0);
+        //Visibility.transform.localScale = new Vector3(4,4,0);
+        Visibility.SetActive(false);
         for (int i = 0; i < currentEnemis.Length; i++)
         {
             StartCoroutine("wait", currentEnemis[i]);
@@ -111,6 +111,7 @@ public class CharacterMover : MonoBehaviour
         inBarrel = false;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         gameObject.GetComponentInChildren<CircleCollider2D>().enabled = true;
-        Visibility.transform.localScale = new Vector3(10,10,0);
+        //Visibility.transform.localScale = new Vector3(10,10,0);
+        Visibility.SetActive(true);
     }
 }
