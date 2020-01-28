@@ -14,6 +14,7 @@ public class CharacterMover : MonoBehaviour
     public Rigidbody2D rb2d;
     public bool inBarrel = false;
     public float movespeed;
+    public string SceneneToLoad;
     private bool hasKey = false;
     private float speed = 1f;
     private int saved = 0;
@@ -60,7 +61,7 @@ public class CharacterMover : MonoBehaviour
         }
         if(hasKey && col.gameObject.tag == "Door" && (Input.GetButtonDown("Jump") || buttonPressed))
         {
-            Loadscene("Map2");
+            Loadscene(SceneneToLoad);
         }
         if(col.gameObject.tag == "Potion" && (Input.GetButtonDown("Jump") || buttonPressed))
         {

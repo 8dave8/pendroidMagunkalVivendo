@@ -1025,10 +1025,10 @@ MonoBehaviour:
   Visibility: {fileID: 1485426569}
   buttonPressed: 0
   joystick: {fileID: 512047921}
-  Saved: {fileID: 1348275527}
   rb2d: {fileID: 624109268}
   inBarrel: 0
   movespeed: 10
+  SceneneToLoad: Map2
 --- !u!50 &624109268
 Rigidbody2D:
   serializedVersion: 4
