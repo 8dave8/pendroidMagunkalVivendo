@@ -94,7 +94,7 @@ public class CharacterMover : MonoBehaviour
     }
     IEnumerator wait(GameObject currentEnemy)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         currentEnemy.GetComponent<EnemyAI>().isTargetingPlayer = false;
     }
     IEnumerator buttonOff()
